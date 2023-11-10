@@ -4,69 +4,71 @@ from flask_app.models import purchase, user # import entire file, rather than cl
 from flask import flash
 
 # CREATE
-@app.route('/shows/new')
-def create_show():
+@app.route('/item/custom')
+def create_item():
     if not session:
         return redirect('/')
-    return render_template('createshow.html')
+    return render_template('[INSERT ITEM/CUSTOM HTML HERE]')
 
-@app.route('/createshow', methods=['POST'])
-def createshow():
-    if not show.Show.validate_show(request.form):
-        return redirect('/shows/new')
+@app.route('/createitem', methods=['POST'])
+def createitem():
+    if not purchase.Purchase.validate_purchase(request.form):
+        return redirect('/item/custom')
     data = {
-        "title": request.form['title'],
-        "network": request.form['network'],
-        "date": request.form['date'],
-        "description": request.form['description'],
+        "item_name": request.form['item_name'],
+        "category": request.form['category'],
+        "facility": request.form['facility'],
+        "city": request.form['city'],
+        "quantity": request.form['quantity'],
         "user_id": session['id']
     }
-    show.Show.save(data)
-    return redirect('/shows')
+    purchase.Purchase.save(data)
+    return redirect('/my_gifts')
 
 #READ
-@app.route('/shows')
-def display():
-    shows = show.Show.get_all()
+@app.route('/my_gifts')
+def display(id):
+    user_purchases = user.User.get_user_purchases(id)
     if 'id' not in session:
         return redirect('/')
-    return render_template('homepage.html', shows=shows)
+    return render_template('[INSERT MY_GIFTS HTML HERE]', user_purchases = user_purchases)
 
-@app.route('/shows/<int:id>')
+@app.route('/item/<int:id>')
 def showone(id):
     if 'id' not in session:
         return redirect ('/')
-    one_show = show.Show.get_by_id(id)
-    return render_template('show.html', one_show = one_show)
+    one_purchase = purchase.Purchase.get_by_id(id)
+    return render_template('[INSERT ITEM INFO DISPLAY PAGE HERE]', one_purchase = one_purchase)
 
 #UPDATE
-@app.route('/shows/edit/<int:id>')
+@app.route('/item/edit/<int:id>')
 def update(id):
     if 'id' not in session:
         return redirect ('/')
-    one_show = show.Show.get_by_id(id)
-    return render_template('update.html', one_show = one_show)
+    one_purchase = purchase.Purchase.get_by_id(id)
+    return render_template('[INSERT UPDATE PAGE HTML HERE]', one_purchase = one_purchase)
 
-@app.route('/updateshow/<int:id>', methods=['POST', 'GET'])
+@app.route('/updateitem/<int:id>', methods=['POST', 'GET'])
 def updating(id):
     if 'id' not in session:
         return redirect ('/')
-    if not show.Show.validate_show(request.form):
-        return redirect(f'/shows/edit/{id}')
+    if not purchase.Purchase.validate_purchase(request.form):
+        return redirect(f'/item/edit/{id}')
     data = {
-        'title' : request.form['title'],
-        'network' : request.form['network'],
-        'date' : request.form['date'],
-        'description' : request.form['description'],
+        'item_name' : request.form['item_name'],
+        "category": request.form['category'],
+        "facility": request.form['facility'],
+        "city": request.form['city'],
+        "quantity": request.form['quantity'],
         'id' : id
     }
-    show.Show.update(data)
-    return redirect('/shows')
+    purchase.Purchase.update(data)
+    return redirect('[INSERT MY_GIFTS PAGE HTML HERE]')
 
 #DELETE
 @app.route("/delete/<int:id>", methods=['POST', 'GET'])
 def deleteshow(id):
     if 'id' not in session:
         return redirect ('/')
-    show.Show.delete(id)
-    return redirect('/shows')
+    purchase.Purchase.delete(id)
+    return redirect('[INSERT MY_GIFTS PAGE HTML HERE]')
