@@ -3,7 +3,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask import flash, session, request
 from flask_bcrypt import Bcrypt
 from flask import flash
-from flask_app.models import show
+from flask_app.models import purchase
 bcrypt = Bcrypt(app)
 import re
 # import re
@@ -12,7 +12,7 @@ import re
 # The above is used when we do login registration, be sure to install flask-bcrypt: pipenv install flask-bcrypt
 
 class User:
-    db = "tvshows" #which database are you using for this project
+    db = "giftanon" #which database are you using for this project
     def __init__(self, data):
         self.id = data['id']
         self.first_name = data['first_name']
@@ -21,11 +21,9 @@ class User:
         self.password = data['password']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.shows = []
+        self.purchases = []
         # What changes need to be made above for this project?
         #What needs to be added her for class association?
-
-
 
     # Create Users Models
 
@@ -50,29 +48,29 @@ class User:
         return cls(user_email[0])
     
     @classmethod
-    def get_user_shows(cls, data):
+    def get_user_purchases(cls, data):
         query = """
         SELECT * 
         FROM users
-        LEFT JOIN shows
-        ON users.id = shows.user_id
+        LEFT JOIN purchases
+        ON users.id = purchases.user_id
         WHERE users.id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query,data)
-        show_list = []
+        purchase_list = []
         for result in results:
-            this_show = cls(result)
-            show_data = {
-                    "id": result['idshows'],
+            this_purchase = cls(result)
+            purchase_data = {
+                    "id": result['id'],
                     "title": result['title'],
                     "network": result['network'],
                     "date": result['date'],
                     "description": result['description'],
-                    "created_at": result['shows.created_at'],
-                    "updated_at": result['shows.updated_at']
+                    "created_at": result['purchases.created_at'],
+                    "updated_at": result['purchases.updated_at']
             }
-            this_show.shows.append(show.Show(show_data))
-            show_list.append(this_show)
-        return show_list
+            this_purchase.purchases.append(purchase.Purchase(purchase_data))
+            purchase_list.append(this_purchase)
+        return purchase_list
 
     # Update Users Models
 
