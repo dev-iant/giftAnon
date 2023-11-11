@@ -23,7 +23,7 @@ def register():
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
     session['id'] = user_in_db.id
-    return redirect('/shows')
+    return redirect('/home')
 
 
 # Read Users Controller

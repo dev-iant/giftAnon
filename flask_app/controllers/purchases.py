@@ -40,6 +40,13 @@ def showone(id):
     one_purchase = purchase.Purchase.get_by_id(id)
     return render_template('[INSERT ITEM INFO DISPLAY PAGE HERE]', one_purchase = one_purchase)
 
+@app.route('/gift/given')
+def show_user_gifts(id):
+    if 'id' not in session:
+        return redirect('/')
+    user_gifts = purchase.Purchase.get_all_purchases(id)
+    return render_template('[INSERT GIFT/GIVEN HTML FILE HERE]', user_gifts = user_gifts)
+
 #UPDATE
 @app.route('/item/edit/<int:id>')
 def update(id):

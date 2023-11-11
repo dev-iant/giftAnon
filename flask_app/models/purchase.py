@@ -77,6 +77,30 @@ class Purchase:
         return purchase_list[0]
     
     @classmethod
+    def get_all_purchases(cls, id):
+        data = {
+            "id" : id
+        }
+        query = """
+        SELECT *
+        FROM purchases
+        LEFT JOIN users
+        ON purchases.purchaser_id = users.id
+        WHERE purchaser_id = %(id)s"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        purchase_list = []
+        for result in results:
+            this_list = cls(result)
+            purchase_data = {
+                "city": result['city'],
+                "facility": result['facility'],
+                "item": result['item'],
+                "quantity": result['quantity']
+            }
+            purchase_list.append(this_list)
+        return purchase_list
+    
+    @classmethod
     def get_by_item_name(cls, item_name):
         data = {
             "item_name" : item_name
