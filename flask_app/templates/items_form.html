@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" class="antialiased">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>giftAnon</title>
+    <meta name="description" content="">
+	<meta name="keywords" content="">
+	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
+    <link rel="stylesheet" href="giftAnon/flask_app/static/css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Handlee&family=Nanum+Pen+Script&family=Palanquin:wght@100;200;300;400;500;600&family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet">
+    <style type="text/css">
+        body
+        {
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: contain;
+            background-image: url('../static/images/items.jpg');
+            background-position: center;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+    <!-- navbar -->
+        <div class="navbar">
+            <h1 class="greeting">Hi Brandy!</h1>
+
+            <div class="links-right">
+                <a href="#" class="text">Home</a>
+                <a href="#" class="text">My Requests</a>
+                <a href="#" class="text">Gifts Given</a>
+            </div>
+            
+        </div>
+        <!-- /navbar -->
+
+        <!-- container -->
+        <div class="container">
+            <!-- main left side -->
+            <div class="main-left">
+
+                <!-- home-left-top -->
+                <div class="home-left-top">
+                    <div class="">
+                        <form action="/NEEDS TO BE FILLED OUT"first_name" class="">Item Name: </label>
+                            <input type="text" name="item_name" class="form-control" required>
+                        </form>
+
+                        <div class="dropdown-content">
+                            <button class="dropbtn">QTY:</button>
+                            <select id="dropdown" onchange="selectOption(this)">
+                                <option value="10" selected="selected" hidden>10</option>
+                                <option value="0">0</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </div>
+                        
+                        
+                        <div class="dropdown">
+                            <button class="dropbtn">Facility:</button>
+                            <div class="dropdown-content">
+                                <select id="dropdown" onchange="selectOption(this)">
+                                    <option>{{ (FACILITY NAME) }}</option>
+                                    <option>{{ (FACILITY NAME) }}</option>
+                                    <option>{{ (FACILITY NAME) }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <button class="dropbtn">City:</button>
+                            <div class="dropdown-content">
+                                <select id="dropdown" onchange="selectOption(this)">
+                                    <option>{{ (CITY NAME) }}</option>
+                                    <option>{{ (CITY NAME) }}</option>
+                                    <option>{{ (CITY NAME) }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="dropdown">
+                            <button class="dropbtn">Category:</button>
+                            <div class="dropdown-content">
+                                <select id="dropdown" onchange="selectOption(this)">
+                                    <option>{{ (CATEGORY NAME) }}</option>
+                                    <option>{{ (CATEGORY NAME) }}</option>
+                                    <option>{{ (CATEGORY NAME) }}</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <a href="{{ url_for(NEEDS TO BE FILLED OUT)}}" class="">Update</a>
+                    </div>
+                </div>
+                <!-- /home-left-top -->
+
+            <!-- home-left-bottom -->
+            <div class="home-left-bottom">
+                <!-- THIS IS FOR THE API LINK TO THE MAP -->
+                <!-- I DON'T KNOW HOW TO ADD IT SO I'LL NEED HELP OR I CAN GOOGLE IT -->
+            </div>
+            <!-- /home-left-bottom -->
+
+            </div>
+            <!-- /main left side -->
+
+
+            <!-- main right side -->
+            <div class="main-right">
+                <!-- background-image: url('./assets/welcome.jpg') -->
+                <!-- THIS AREA IS BLANK FOR THE IMAGE TO NOT BE COVERED -->
+
+            </div>
+            <!-- /right side -->
+
+        </div>
+        <!--/container-->
+    </div>
+    <!-- /wrapper -->
+</body>
+</html>
