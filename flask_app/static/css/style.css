@@ -1,4 +1,238 @@
-html {
-    background-color: darkblue;
-    color: aliceblue;
+*{
+    margin: 0;
+    padding: 0;
 }
+
+.body{
+    margin: 0;
+}
+.wrapper{
+    font-family: 'Comfortaa', cursive;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+/* home.html */
+.navbar{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    background-color: transparent;
+    height: 120px;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Nanum Pen Script', cursive;
+}
+
+.greeting{
+    color: #FC8064;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 50pt;
+    margin-left: 75px;
+    text-shadow: 2px 2px  #31313B;
+}
+
+.gift-requests{
+    text-align: center;
+    color: #31313B;
+    font-size: 24pt;
+}
+
+.text{
+    text-decoration: underline;
+    color: #31313B;
+    font-size: 25pt;
+    justify-content: space-around;
+    padding: 0px 20px;
+    font-weight: 300;
+    font-size: 32pt;
+}
+
+.links-right{
+    justify-content: end;
+    flex-grow: 1;
+    display: flex;
+    flex: 1 1 200px;
+    margin-right: 75px;
+}
+
+.container{
+    width: 100%;
+    margin-top: 130px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+}
+
+.main-left, .main-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 400px;
+}
+
+.main-left{
+    width: 50%;
+    align-self: center;
+    margin-left: 45px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.main-right{
+    width: 50%;
+    align-self: auto;
+    flex: 1 1 2;
+    
+}
+
+.home-left-top, .home-left-bottom{
+    font-family: 'Comfortaa', cursive;
+    color: #31313B;
+    width: 100%;
+}
+
+.table{
+    border-collapse: collapse;
+    width: 100%;
+    background-color: #ECF0F3;
+    font-family: 'Comfortaa', cursive;
+    font-size: medium;
+    letter-spacing: 0.5px;
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px dashed black;
+    box-shadow: 0px 4px 4px 2px rgba(0,0,0, 0.15);
+    margin: auto;
+}
+
+.table thead tr{
+    border-bottom: 1px dashed #31313B;
+    font-weight: 800;
+    background-color: #ECF0F3;
+}
+
+.table thead tr td{
+    padding: 8px;
+}
+
+.table tbody tr td{
+    padding: 8px;
+}
+/* /home.html */
+
+
+/* login & registration */
+.login-navbar{
+    display: flex;
+    align-items: center;
+    text-align: center;
+    position: fixed;
+    background-color: #FFFFFF;
+    height: 120px;
+    width: 100%;
+    padding: 10px;
+    font-family: 'Nanum Pen Script', cursive; 
+}
+
+.login-greeting{
+    color: #FC8064;
+    padding: 8px;
+    font-weight: 600;
+    font-size: 50pt;
+    margin-left: 75px;
+    text-shadow: 2px 2px  #31313B;
+}
+
+.login-p{
+    justify-content: end;
+    flex-grow: 1;
+    display: flex;
+    flex: 1 1 200px;
+    margin-right: 75px;
+    color:  #31313B;
+    padding: 8px;
+    font-weight: 300;
+    font-size: 32pt;
+}
+
+.login-main-left, .login-main-right{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 400px;
+}
+
+
+.login-main-left{
+    width: 50%;
+    align-self: center;
+    flex: 1 1 1;
+    margin-left: 45px;
+    display: flex;
+    flex-direction: column;
+}
+
+.login-main-right{
+    width: 50%;
+    align-self: auto;
+    flex: 1 1 2;
+}
+
+.register-left-top, .login-left-bottom{
+    font-family: 'Comfortaa', cursive;
+    color: #31313B;
+    width: 60%;
+    margin-right: 20%;
+}
+
+.form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.login-text{
+    color:  #31313B;
+}
+
+.form-control{
+    background-color: rgb(242,210,203, 0.3);
+    border: 1px dashed #31313B;
+    padding: 8px;
+    color: #31313B;
+}
+
+.login h2, .register h2{
+    text-align: center;
+    color: #31313B;
+    font-size: 24pt;
+}
+
+.button-login, .button-register{
+    background-color: rgb(242,210,203);
+    color: #35322D;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    font-size: 14pt;
+}
+
+
+/* my_request.html */
+.links-left-bottom{
+    display: flex;
+    flex: 1 1 200px;
+    margin-right: 75px;
+    font-family: 'Nanum Pen Script', cursive;
+    text-decoration: underline;
+    color: #31313B;
+    font-size: 25pt;
+    justify-content: end;
+    font-weight: 300;
+}
+/* /my_request.html */
