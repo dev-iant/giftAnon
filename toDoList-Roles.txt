@@ -1,0 +1,17 @@
+Jarrod - 
+Create functionality for the 3 Gift List by (City, Facility, Category) pages
+    Gift button in the actions column will assign the session['id'] as the "purchaser_id" in the db. Anything that has a purchaser_id other than null will not appear in any of these lists. The purchaser_id purchases will only appear in that session['id']s appropriate "Gift Given" page if the session and purchases_id match.
+Write logic for Gift Given and My Gift Requests pages
+    Admins cannot view Gifts Given
+    Users cannot view My Gift Requests (They also shouldn't be able to see their opposing buttons for these pages. Users can't see "My Gift Requests" buttons, etc.)
+
+Keithson - 
+Create validations on Reg/Login page
+Make Item Info page functional so users can submit items to the db
+Make hyperlinks and routes functional on main "Gift Requests" homepage'
+# MAP FUNCTION (not a priority at the moment)
+
+Brandy - 
+Design new facility page in place of Display One page in bottom left
+Add a button/styling (if needed) on "Gift Requests" homepage for users to request items (directs them to item/custom)
+Add drop-down styling (if needed) for the new Reg. field for Admin/User
