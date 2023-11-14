@@ -6,6 +6,7 @@ Write logic for Gift Given and My Gift Requests pages
     Users cannot view My Gift Requests (They also shouldn't be able to see their opposing buttons for these pages. Users can't see "My Gift Requests" buttons, etc.)
 
 Keithson - 
+/critical/ Re-work the category code (or remove if not needed) and resubmit the github pull request. /critical/
 Create validations on Reg/Login page
 Make Item Info page functional so users can submit items to the db
 Make hyperlinks and routes functional on main "Gift Requests" homepage'
