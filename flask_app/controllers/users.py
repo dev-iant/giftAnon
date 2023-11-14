@@ -4,6 +4,12 @@ bcrypt = Bcrypt(app)
 from flask import render_template, redirect, request, session
 from flask_app.models import user # import entire file, rather than class, to avoid circular imports
 from flask import flash # import entire file, rather than class, to avoid circular imports
+from flask_app.models.facility import Facility
+from flask_app.models.category import Categories
+
+
+
+
 
 # Create Users Controller
 @app.route('/register/user', methods=['POST'])
@@ -18,18 +24,27 @@ def register():
         "email": request.form['email'],
         "password": pw_hash
     }
+    print( data)
     user.User.save(data)
-    user_in_db = user.User.get_by_email(data)
+    user_in_db = user.User.get_by_email(data['email'])
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
     session['id'] = user_in_db.id
     return redirect('/home')
 
 
+@app.route('/home')
+def show_home():
+    facility_list = Facility.get_all_facilities()
+    category_list = Categories.get_all_categories()
+    return  render_template('home.html', facilities = facility_list, categories= category_list)
+
+
+
 # Read Users Controller
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('login.html')
 
 @app.route('/login', methods=['POST'])
 def login():
@@ -50,6 +65,7 @@ def login():
     session['id'] = user_in_db.id
     # never render on a post!!!
     return redirect("/shows")
+
 
 @app.route('/logout')
 def logout():

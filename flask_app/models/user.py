@@ -97,7 +97,7 @@ class User:
         if len(data['password']) < 1:
             flash("Please fill in a password.", "register")
             is_valid = False
-        if data['password'] != data['c_pass']:
+        if data['password'] != data['confirm_password']:
             flash('Passwords must match.', "register")
             is_valid = False
         if User.get_by_email(data['email']):
