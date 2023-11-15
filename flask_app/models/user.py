@@ -31,8 +31,8 @@ class User:
     def save(cls, data):
         query = """
         INSERT INTO users 
-        (first_name, last_name, email, password) 
-        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s);"""
+        (first_name, last_name, email, password, role) 
+        VALUES (%(first_name)s, %(last_name)s, %(email)s, %(password)s, %(role)s);"""
         user_id = connectToMySQL(cls.db).query_db(query, data)
         return user_id
 

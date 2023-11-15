@@ -4,8 +4,6 @@ bcrypt = Bcrypt(app)
 from flask import render_template, redirect, request, session
 from flask_app.models import user # import entire file, rather than class, to avoid circular imports
 from flask import flash # import entire file, rather than class, to avoid circular imports
-from flask_app.models.facility import Facility
-from flask_app.models.category import Categories
 
 
 
@@ -14,7 +12,9 @@ from flask_app.models.category import Categories
 # Create Users Controller
 @app.route('/register/user', methods=['POST'])
 def register():
+    print("is this working?")
     if not user.User.validate_user(request.form):
+        print("This isn't working")
         return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
     print(pw_hash)
@@ -22,9 +22,10 @@ def register():
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
         "email": request.form['email'],
-        "password": pw_hash
+        "password": pw_hash,
+        "role": request.form['role']
     }
-    print( data)
+    print(data)
     user.User.save(data)
     user_in_db = user.User.get_by_email(data['email'])
     session['first_name'] = user_in_db.first_name
@@ -35,9 +36,7 @@ def register():
 
 @app.route('/home')
 def show_home():
-    facility_list = Facility.get_all_facilities()
-    category_list = Categories.get_all_categories()
-    return  render_template('home.html', facilities = facility_list, categories= category_list)
+    return  render_template('home.html')
 
 
 
@@ -50,6 +49,7 @@ def index():
 def login():
     # see if the username provided exists in the database
     data = { "email" : request.form["email"] }
+    print(data)
     user_in_db = user.User.get_by_email(data)
     # user is not registered in the db
     if not user_in_db:
@@ -64,7 +64,7 @@ def login():
     session['last_name'] = user_in_db.last_name
     session['id'] = user_in_db.id
     # never render on a post!!!
-    return redirect("/shows")
+    return redirect("/home")
 
 
 @app.route('/logout')

@@ -26,6 +26,21 @@ def createitem():
     return redirect('/my_gifts')
 
 #READ
+@app.route('/city/<city>')
+def showcity(city):
+    city_gifts = purchase.Purchase.get_by_city(city)
+    if city == 'newyork':
+        citystring = 'New York, NY'
+    if city == 'maui':
+        citystring = 'Maui, HI'
+    if city == 'losangeles' :
+        citystring = 'Los Angeles, CA'
+    if city == 'houston' :
+        citystring = 'Houston, TX'
+    if 'id' not in session:
+        return redirect('/')
+    return render_template('by_city.html', city_gifts = city_gifts, citystring = citystring)
+
 @app.route('/my_gifts')
 def display(id):
     user_purchases = user.User.get_user_purchases(id)

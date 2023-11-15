@@ -101,6 +101,22 @@ class Purchase:
         return purchase_list
     
     @classmethod
+    def get_by_city(cls, city):
+        data = {
+            "city" : city
+        }
+        query = """
+        SELECT *
+        FROM purchases
+        LEFT JOIN users
+        ON purchases.user_id = users.id
+        WHERE city = %(city)s"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        if not results:
+            return False
+        return results
+    
+    @classmethod
     def get_by_item_name(cls, item_name):
         data = {
             "item_name" : item_name
