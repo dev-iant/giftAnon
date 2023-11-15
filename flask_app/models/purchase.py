@@ -69,6 +69,7 @@ class Purchase:
                     "last_name": result['last_name'],
                     "email": result['email'],
                     "password": "",
+                    "role": result['role'],
                     "created_at": result['users.created_at'],
                     "updated_at": result['users.updated_at']
             }
@@ -94,7 +95,7 @@ class Purchase:
             purchase_data = {
                 "city": result['city'],
                 "facility": result['facility'],
-                "item": result['item'],
+                "item_name": result['item_name'],
                 "quantity": result['quantity']
             }
             purchase_list.append(this_list)
@@ -111,6 +112,38 @@ class Purchase:
         LEFT JOIN users
         ON purchases.user_id = users.id
         WHERE city = %(city)s"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        if not results:
+            return False
+        return results
+    
+    @classmethod
+    def get_by_facility(cls, facility):
+        data = {
+            "facility" : facility
+        }
+        query = """
+        SELECT *
+        FROM purchases
+        LEFT JOIN users
+        ON purchases.user_id = users.id
+        WHERE facility = %(facility)s"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        if not results:
+            return False
+        return results
+    
+    @classmethod
+    def get_by_category(cls, category):
+        data = {
+            "category" : category
+        }
+        query = """
+        SELECT *
+        FROM purchases
+        LEFT JOIN users
+        ON purchases.user_id = users.id
+        WHERE category = %(category)s"""
         results = connectToMySQL(cls.db).query_db(query,data)
         if not results:
             return False
@@ -155,6 +188,15 @@ class Purchase:
         category = %(category)s, 
         facility = %(facility)s, 
         city = %(city)s
+        WHERE id = %(id)s;"""
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results
+    
+    @classmethod
+    def updatePurchaser(cls, data):
+        query = """
+        UPDATE purchases
+        SET purchaser_id = %(purchaser_id)s 
         WHERE id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query, data)
         return results

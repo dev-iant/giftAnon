@@ -31,8 +31,9 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
-                <a href="#" class="text">My Requests</a>
+                <a href="/home" class="text">Home</a>
+                <a href="/my_gifts" class="text">My Requests</a>
+                <a href="/logout">Logout</a>
             </div>
             
         </div>
@@ -57,39 +58,16 @@
                                 <td>Status</td>
                             </tr>
                         </thead>
-
                         <tbody class="">
+                            {% for gift in user_gifts %}
                             <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Bedframe</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gifted</a></td>
+                                <td>{{ gift.city }}</td>
+                                <td>{{ gift.facility }}</td>
+                                <td>{{ gift.item_name }}</td>
+                                <td>{{ gift.quantity }}</td>
+                                <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
                             </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Size Comforter</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gifted</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Sheet Set</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gifted</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Standard Pillow</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gifted</a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
 
                     </table>

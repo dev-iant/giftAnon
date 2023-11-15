@@ -31,7 +31,7 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
+                <a href="/home" class="text">Home</a>
                 <a href="#" class="text">My Requests</a>
                 <a href="#" class="text">Gifts Given</a>
             </div>
@@ -46,7 +46,7 @@
 
                 <!-- home-left-top -->
                 <div class="home-left-top">
-                    <h2 class="gift-requests">Gift List by (Facility Name)</h2>
+                    <h2 class="gift-requests">Gift List by {{ facilitystring }}</h2>
                     
                     <table class="table">
                         <thead>
@@ -56,31 +56,16 @@
                                 <td>Action</td>
                             </tr>
                         </thead>
-
                         <tbody class="">
+                            {% for facility in facility_gifts %}
                             <tr>
-                                <td><a href="#" class="">Can of Beans</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gift</a></td>
+                                {% if not facility.purchaser_id %}
+                                <td>{{ facility.item_name }}</td>
+                                <td>{{ facility.quantity }}</td>
+                                <td><a href="/gift/{{facility.id}}/{{session['id']}}">Gift</a></td>
+                                {% endif %}
                             </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Bread</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Gift</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Pasta</a></td>
-                                <td><a href="#" class="">6</a></td>
-                                <td><a href="#" class="">Gift</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Pasta Sauce</a></td>
-                                <td><a href="#" class="">6</a></td>
-                                <td><a href="#" class="">Gift</a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
 
                     </table>

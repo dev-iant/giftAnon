@@ -41,6 +41,36 @@ def showcity(city):
         return redirect('/')
     return render_template('by_city.html', city_gifts = city_gifts, citystring = citystring)
 
+@app.route('/facility/<facility>')
+def showfacility(facility):
+    facility_gifts = purchase.Purchase.get_by_facility(facility)
+    if facility == 'goodwill':
+        facilitystring = 'Goodwill'
+    if facility == 'salvationarmy':
+        facilitystring = 'Salvation Army'
+    if facility == 'foodbank' :
+        facilitystring = 'Food Bank'
+    if facility == 'reliefcharity' :
+        facilitystring = 'Relief Charity'
+    if 'id' not in session:
+        return redirect('/')
+    return render_template('by_facility.html', facility_gifts = facility_gifts, facilitystring = facilitystring)
+
+@app.route('/category/<category>')
+def showcategory(category):
+    category_gifts = purchase.Purchase.get_by_category(category)
+    if category == 'clothing':
+        categorystring = 'Clothing'
+    if category == 'homegoods':
+        categorystring = 'Home Goods'
+    if category == 'groceries' :
+        categorystring = 'Groceries'
+    if category == 'water' :
+        categorystring = 'Water (Case)'
+    if 'id' not in session:
+        return redirect('/')
+    return render_template('by_category.html', category_gifts = category_gifts, categorystring = categorystring)
+
 @app.route('/my_gifts')
 def display(id):
     user_purchases = user.User.get_user_purchases(id)
@@ -56,11 +86,12 @@ def showone(id):
     return render_template('[INSERT ITEM INFO DISPLAY PAGE HERE]', one_purchase = one_purchase)
 
 @app.route('/gift/given')
-def show_user_gifts(id):
+def show_user_gifts():
     if 'id' not in session:
         return redirect('/')
+    id = session['id']
     user_gifts = purchase.Purchase.get_all_purchases(id)
-    return render_template('[INSERT GIFT/GIVEN HTML FILE HERE]', user_gifts = user_gifts)
+    return render_template('gifts_given.html', user_gifts = user_gifts)
 
 #UPDATE
 @app.route('/item/edit/<int:id>')
@@ -69,6 +100,16 @@ def update(id):
         return redirect ('/')
     one_purchase = purchase.Purchase.get_by_id(id)
     return render_template('[INSERT UPDATE PAGE HTML HERE]', one_purchase = one_purchase)
+
+@app.route('/gift/<int:id>/<int:purchaser_id>', methods=['POST', 'GET'])
+def purchaseItem(id, purchaser_id):
+    data = {
+        'id' : id,
+        'purchaser_id' : purchaser_id
+    }
+    purchase.Purchase.updatePurchaser(data)
+    one_gift = purchase.Purchase.get_by_id(id)
+    return render_template('items.html', one_gift = one_gift)
 
 @app.route('/updateitem/<int:id>', methods=['POST', 'GET'])
 def updating(id):

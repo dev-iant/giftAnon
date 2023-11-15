@@ -31,6 +31,7 @@ def register():
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
     session['id'] = user_in_db.id
+    session['role'] = user_in_db.role
     return redirect('/home')
 
 
@@ -63,6 +64,7 @@ def login():
     session['first_name'] = user_in_db.first_name
     session['last_name'] = user_in_db.last_name
     session['id'] = user_in_db.id
+    session['role'] = user_in_db.role
     # never render on a post!!!
     return redirect("/home")
 

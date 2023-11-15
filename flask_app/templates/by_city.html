@@ -62,7 +62,7 @@
                                 {% if not city.purchaser_id %}
                                 <td>{{ city.item_name }}</td>
                                 <td>{{ city.quantity }}</td>
-                                <td><a href=""></a>Gift</td>
+                                <td><a href="/gift/{{city.id}}/{{session['id']}}">Gift</a></td>
                                 {% endif %}
                             </tr>
                             {% endfor %}
