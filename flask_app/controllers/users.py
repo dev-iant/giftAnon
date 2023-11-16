@@ -12,12 +12,10 @@ from flask import flash # import entire file, rather than class, to avoid circul
 # Create Users Controller
 @app.route('/register/user', methods=['POST'])
 def register():
-    print("is this working?")
     if not user.User.validate_user(request.form):
         print("This isn't working")
         return redirect('/')
     pw_hash = bcrypt.generate_password_hash(request.form['password'])
-    print(pw_hash)
     data = {
         "first_name": request.form['first_name'],
         "last_name": request.form['last_name'],
@@ -25,7 +23,6 @@ def register():
         "password": pw_hash,
         "role": request.form['role']
     }
-    print(data)
     user.User.save(data)
     user_in_db = user.User.get_by_email(data['email'])
     session['first_name'] = user_in_db.first_name
@@ -37,6 +34,8 @@ def register():
 
 @app.route('/home')
 def show_home():
+    if not session:
+        return redirect('/')
     return  render_template('home.html')
 
 
@@ -50,7 +49,6 @@ def index():
 def login():
     # see if the username provided exists in the database
     data = { "email" : request.form["email"] }
-    print(data)
     user_in_db = user.User.get_by_email(data)
     # user is not registered in the db
     if not user_in_db:
