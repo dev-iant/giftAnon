@@ -8,7 +8,7 @@
     <meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
-    <link rel="stylesheet" href="giftAnon\flask_app\static\css\style.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Handlee&family=Nanum+Pen+Script&family=Palanquin:wght@100;200;300;400;500;600&family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet">
@@ -30,8 +30,9 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
-                <a href="#" class="text">Gifts Given</a>
+                <a href="/home" class="text">Home</a>
+                <a href="/gift/given" class="text">Gifts Given</a>
+                <a href="/logout" class="text">Logout</a>
             </div>
             
         </div>
