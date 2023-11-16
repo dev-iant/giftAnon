@@ -73,7 +73,11 @@
                         </div>
                         <div class="form-group">
                             <label for="role" class="login-text">Role: </label>
-                            <input type="role" name="role" class="form-control" required>
+                            <select id="role" class="login-text" name="role"  onchange="selectOption(this)">
+                                <option value="Select Role" selected="selected" hidden>--Select Role--</option>
+                                <option value="User">User</option>
+                                <option value="Admin">Admin</option>
+                            </select>
                         </div>
                         <input type="submit" value="Register" class="button-register">
                     </form>

@@ -8,7 +8,7 @@ from flask import flash
 def create_item():
     if not session:
         return redirect('/')
-    return render_template('[INSERT ITEM/CUSTOM HTML HERE]')
+    return render_template('items_form.html')
 
 @app.route('/createitem', methods=['POST'])
 def createitem():
@@ -86,7 +86,7 @@ def showone(id):
     if 'id' not in session:
         return redirect ('/')
     one_purchase = purchase.Purchase.get_by_id(id)
-    return render_template('[INSERT ITEM INFO DISPLAY PAGE HERE]', one_purchase = one_purchase)
+    return render_template('items_form.html', one_purchase = one_purchase)
 
 @app.route('/gift/given')
 def show_user_gifts():
@@ -102,7 +102,7 @@ def update(id):
     if 'id' not in session:
         return redirect ('/')
     one_purchase = purchase.Purchase.get_by_id(id)
-    return render_template('[INSERT UPDATE PAGE HTML HERE]', one_purchase = one_purchase)
+    return render_template('items_form.html', one_purchase = one_purchase)
 
 @app.route('/gift/<int:id>/<int:purchaser_id>', methods=['POST', 'GET'])
 def purchaseItem(id, purchaser_id):
@@ -129,7 +129,7 @@ def updating(id):
         'id' : id
     }
     purchase.Purchase.update(data)
-    return redirect('[INSERT MY_GIFTS PAGE HTML HERE]')
+    return redirect('items_form.html')
 
 #DELETE
 @app.route("/delete/<int:id>", methods=['POST', 'GET'])
@@ -137,4 +137,4 @@ def deleteshow(id):
     if 'id' not in session:
         return redirect ('/')
     purchase.Purchase.delete(id)
-    return redirect('[INSERT MY_GIFTS PAGE HTML HERE]')
+    return redirect('my_request.html')

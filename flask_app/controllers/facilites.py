@@ -10,7 +10,7 @@ from flask_app.models.facility import Facility
 
 
 @app.route("/facility/create" , methods=['POST'])
-def create_fqacility():    
+def create_facility():    
     
     data={ 
         'facility_id'  : request.form["facility_id"],        
@@ -24,7 +24,7 @@ def create_fqacility():
   
     bin_id = Facility.create_facility(data)
     
- 
+# does this need to return or render_template?
 
 
 @app.route('/facilities')
@@ -32,6 +32,7 @@ def edit_select_bins():
     bins = Bin.get_all_bins()    
     print(bins[0].member_id)
     return render_template("edit-bin-selection.html",bins=bins)
+# the classmethod is commented out in the model
 
 
 
@@ -46,6 +47,7 @@ def edit_bin(id):
     if 'id' in session:       
             return render_template("edit-bin.html",bin=bin)
     return redirect('/')
+# the classmethod is commented out in the model
 
 
 
