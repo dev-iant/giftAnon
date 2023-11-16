@@ -72,11 +72,14 @@ def showcategory(category):
     return render_template('by_category.html', category_gifts = category_gifts, categorystring = categorystring)
 
 @app.route('/my_gifts')
-def display(id):
-    user_purchases = user.User.get_user_purchases(id)
+def display():
+    data = {
+        "id": session['id']
+    }
+    user_gifts = user.User.get_user_gifts(data)
     if 'id' not in session:
         return redirect('/')
-    return render_template('[INSERT MY_GIFTS HTML HERE]', user_purchases = user_purchases)
+    return render_template('my_request.html', user_gifts = user_gifts)
 
 @app.route('/item/<int:id>')
 def showone(id):
