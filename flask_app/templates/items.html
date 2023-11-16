@@ -31,9 +31,11 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
-                <a href="#" class="text">My Requests</a>
-                <a href="#" class="text">Gifts Given</a>
+                <a href="/home" class="text">Home</a>
+                {% if session['role'] == 'Admin' %}
+                    <a href="/my_gifts" class="text">My Requests</a>
+                {% endif %}
+                <a href="/gift/given" class="text">Gifts Given</a>
             </div>
             
         </div>
@@ -69,9 +71,7 @@
                             <button class="dropbtn">Facility:</button>
                             <div class="dropdown-content">
                                 <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (FACILITY NAME) }}</option>
-                                    <option>{{ (FACILITY NAME) }}</option>
-                                    <option>{{ (FACILITY NAME) }}</option>
+                                    <option>wowlol</option>
                                 </select>
                             </div>
                         </div>
@@ -80,9 +80,7 @@
                             <button class="dropbtn">City:</button>
                             <div class="dropdown-content">
                                 <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (CITY NAME) }}</option>
-                                    <option>{{ (CITY NAME) }}</option>
-                                    <option>{{ (CITY NAME) }}</option>
+                                    <option>wowlol</option>
                                 </select>
                             </div>
                         </div>
@@ -91,14 +89,12 @@
                             <button class="dropbtn">Category:</button>
                             <div class="dropdown-content">
                                 <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (CATEGORY NAME) }}</option>
-                                    <option>{{ (CATEGORY NAME) }}</option>
-                                    <option>{{ (CATEGORY NAME) }}</option>
+                                    <option>{{ wowlol }}</option>
                                 </select>
                             </div>
                         </div>
 
-                        <a href="{{ url_for(NEEDS TO BE FILLED OUT)}}" class="">Update</a>
+                        <a href="#" class="">Update</a>
                     </div>
                 </div>
                 <!-- /home-left-top -->
