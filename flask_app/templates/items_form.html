@@ -8,7 +8,7 @@
     <meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
-    <link rel="stylesheet" href="giftAnon/flask_app/static/css/style.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Handlee&family=Nanum+Pen+Script&family=Palanquin:wght@100;200;300;400;500;600&family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet">
@@ -31,9 +31,13 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
-                <a href="#" class="text">My Requests</a>
-                <a href="#" class="text">Gifts Given</a>
+                <a href="/home" class="text">Home</a>
+                {% if session['role'] == 'Admin' %}
+                    <a href="/my_gifts" class="text">My Requests</a>
+                {% else %}
+                    <a href="/gift/given" class="text">Gifts Given</a>
+                {% endif %}
+                <a href="/logout" class="text">Logout</a>
             </div>
             
         </div>
@@ -47,58 +51,62 @@
                 <!-- home-left-top -->
                 <div class="home-left-top">
                     <div class="">
-                        <form action="/NEEDS TO BE FILLED OUT"first_name" class="">Item Name: </label>
-                            <input type="text" name="item_name" class="form-control" required>
+                        <form action="/create/item" method="post" class="">
+                            <div class="form-group">
+                                <label for="item_name" class="">Item Name: </label>
+                                <input type="text" name="item_name" class="form-control" required>
+                            </div>
+
+                            <div class="dropdown">
+                                <label for="quantity" class="dropbtn">Quantity: </label>
+                                <select id="quantity" class="dropdown-content" name="quantity" onchange="selectOption(this)">
+                                    <option value="1" selected="selected" hidden>Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                    <option value="4">4</option>
+                                    <option value="5">5</option>
+                                </select>
+                            </div>
+
+                            <div class="dropdown">
+                                <label for="city" class="dropbtn">City: </label>
+                                <select id="city" class="dropdown-content" name="city"  onchange="selectOption(this)">
+                                        <option value="newyork">New York, NY</option>
+                                        <option value="maui">Maui, HI</option>
+                                        <option value="houston">Houston, TX</option>
+                                        <option value="losangeles">Los Angeles, CA</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+                                <label for="facility" class="dropdown-content">Facility: </label>
+                                <select id="facility" class="dropdown-content" name="facility"  onchange="selectOption(this)">
+                                        <option value="goodwill">Goodwill</option>
+                                        <option value="salvationarmy">Salvation Army</option>
+                                        <option value="foodbank">Food Bank</option>
+                                        <option value="reliefcharity">Relief Charity</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="dropdown">
+                                <label for="category" class="dropdown-content">Category: </label>
+                                <select id="category" class="dropdown-content" name="category"  onchange="selectOption(this)">
+                                        <option value="clothing">Clothing</option>
+                                        <option value="homegoods">Home Goods</option>
+                                        <option value="groceries">Groceries</option>
+                                        <option value="water">Water (Case)</option>
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div>
+                                <button>Submit</button>
+                            </div>
                         </form>
-
-                        <div class="dropdown-content">
-                            <button class="dropbtn">QTY:</button>
-                            <select id="dropdown" onchange="selectOption(this)">
-                                <option value="10" selected="selected" hidden>10</option>
-                                <option value="0">0</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </div>
-                        
-                        
-                        <div class="dropdown">
-                            <button class="dropbtn">Facility:</button>
-                            <div class="dropdown-content">
-                                <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (FACILITY NAME) }}</option>
-                                    <option>{{ (FACILITY NAME) }}</option>
-                                    <option>{{ (FACILITY NAME) }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <button class="dropbtn">City:</button>
-                            <div class="dropdown-content">
-                                <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (CITY NAME) }}</option>
-                                    <option>{{ (CITY NAME) }}</option>
-                                    <option>{{ (CITY NAME) }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="dropdown">
-                            <button class="dropbtn">Category:</button>
-                            <div class="dropdown-content">
-                                <select id="dropdown" onchange="selectOption(this)">
-                                    <option>{{ (CATEGORY NAME) }}</option>
-                                    <option>{{ (CATEGORY NAME) }}</option>
-                                    <option>{{ (CATEGORY NAME) }}</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <a href="{{ url_for(NEEDS TO BE FILLED OUT)}}" class="">Update</a>
                     </div>
                 </div>
                 <!-- /home-left-top -->
