@@ -35,7 +35,8 @@
                 {% if session['role'] == 'Admin' %}
                     <a href="/my_gifts" class="text">My Requests</a>
                 {% endif %}
-                <a href="/logout">Logout</a>
+                <a href="/viewall" class="text">View All Gifts</a>
+                <a href="/logout" class="text">Logout</a>
             </div>
             
         </div>
@@ -53,9 +54,9 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <td>Item</td>
                                 <td>City</td>
                                 <td>Facility</td>
-                                <td>Item</td>
                                 <td>QTY</td>
                                 <td>Status</td>
                             </tr>
@@ -63,11 +64,33 @@
                         <tbody class="">
                             {% for gift in user_gifts %}
                             <tr>
-                                <td>{{ gift.city }}</td>
-                                <td>{{ gift.facility }}</td>
-                                <td>{{ gift.item_name }}</td>
+                                <td><a href="/gift/{{gift.id}}/{{session['id']}}">{{ gift.item_name }}</a></td>
+                                    {% if gift.city == 'newyork' %}
+                                        <td>New York, NY</td>
+                                    {% endif %}
+                                    {% if gift.city == 'losangeles' %}
+                                        <td>Los Angeles, CA</td>
+                                    {% endif %}
+                                    {% if gift.city == 'houston' %}
+                                        <td>Houston, TX</td>
+                                    {% endif %}
+                                    {% if gift.city == 'maui' %}
+                                        <td>Maui, HI</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'goodwill' %}
+                                        <td>Goodwill</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'salvationarmy' %}
+                                        <td>Salvation Army</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'reliefcharity' %}
+                                        <td>Relief Charity</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'foodbank' %}
+                                        <td>Food Bank</td>
+                                    {% endif %}
                                 <td>{{ gift.quantity }}</td>
-                                <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
+                                <td><a href="/repop/{{gift.id}}">Cancel</a></td>
                             </tr>
                             {% endfor %}
                         </tbody>

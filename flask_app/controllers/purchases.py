@@ -41,6 +41,13 @@ def showcity(city):
         return redirect('/')
     return render_template('by_city.html', city_gifts = city_gifts, citystring = citystring)
 
+@app.route('/viewall')
+def viewallgifts():
+    all_gifts = purchase.Purchase.get_all()
+    if 'id' not in session:
+        return redirect('/')
+    return render_template('allgifts.html', all_gifts = all_gifts)
+
 @app.route('/facility/<facility>')
 def showfacility(facility):
     facility_gifts = purchase.Purchase.get_by_facility(facility)
@@ -104,6 +111,14 @@ def update(id):
     one_purchase = purchase.Purchase.get_by_id(id)
     return render_template('items_form.html', one_purchase = one_purchase)
 
+@app.route('/repop/<int:id>', methods=['POST', 'GET'])
+def removePurchaserID(id):
+    if 'id' not in session:
+        return redirect ('/')
+    purchase.Purchase.removePurchaser(id)
+    return redirect('/gift/given')
+
+
 @app.route('/gift/<int:id>/<int:purchaser_id>', methods=['POST', 'GET'])
 def purchaseItem(id, purchaser_id):
     data = {
@@ -112,14 +127,22 @@ def purchaseItem(id, purchaser_id):
     }
     purchase.Purchase.updatePurchaser(data)
     one_gift = purchase.Purchase.get_by_id(id)
-    return render_template('items.html', one_gift = one_gift)
+    return render_template('facility.html', one_gift = one_gift)
+
+@app.route('/update/<int:id>')
+def updatepage(id):
+    if session['role'] != 'Admin':
+        return redirect ('/')
+    one_purchase = purchase.Purchase.get_by_id(id)
+    return render_template('update_item.html', one_purchase = one_purchase)
+    
 
 @app.route('/updateitem/<int:id>', methods=['POST', 'GET'])
 def updating(id):
     if 'id' not in session:
         return redirect ('/')
     if not purchase.Purchase.validate_purchase(request.form):
-        return redirect(f'/item/edit/{id}')
+        return redirect(f'/update/{id}')
     data = {
         'item_name' : request.form['item_name'],
         "category": request.form['category'],
@@ -129,7 +152,7 @@ def updating(id):
         'id' : id
     }
     purchase.Purchase.update(data)
-    return redirect('items_form.html')
+    return redirect('/my_gifts')
 
 #DELETE
 @app.route("/cancel/<int:id>", methods=['POST', 'GET'])

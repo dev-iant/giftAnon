@@ -94,6 +94,9 @@ class User:
         if data['password'] != data['confirm_password']:
             flash('Passwords must match.', "register")
             is_valid = False
+        if data['role'] == "Select Role":
+            flash('Please select a role', "register")
+            is_valid = False
         if User.get_by_email(data['email']):
             flash('Email already exists.', "register")
             is_valid = False

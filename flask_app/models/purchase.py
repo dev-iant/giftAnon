@@ -28,25 +28,9 @@ class Purchase:
     def get_all(cls):
         query = """ 
         SELECT * 
-        FROM purchases
-        LEFT JOIN users
-        ON purchases.user_id = users.id;"""
+        FROM purchases;"""
         final = connectToMySQL(cls.db).query_db(query)
-        results = []
-        for result in final:
-            this_purchase = cls(result)
-            user_data = {
-                    "id": result['id'],
-                    "first_name": result['first_name'],
-                    "last_name": result['last_name'],
-                    "email": result['email'],
-                    "password": "",
-                    "created_at": result['created_at'],
-                    "updated_at": result['updated_at']
-            }
-            this_purchase.maker = user.User(user_data)
-            results.append(this_purchase)
-        return results
+        return final
     
     @classmethod
     def get_by_id(cls, id):
@@ -187,7 +171,8 @@ class Purchase:
         SET item_name = %(item_name)s, 
         category = %(category)s, 
         facility = %(facility)s, 
-        city = %(city)s
+        city = %(city)s,
+        quantity = %(quantity)s
         WHERE id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
@@ -197,6 +182,18 @@ class Purchase:
         query = """
         UPDATE purchases
         SET purchaser_id = %(purchaser_id)s 
+        WHERE id = %(id)s;"""
+        results = connectToMySQL(cls.db).query_db(query, data)
+        return results
+    
+    @classmethod
+    def removePurchaser(cls, id):
+        data = {
+            'id' : id
+        }
+        query = """
+        UPDATE purchases
+        SET purchaser_id = null
         WHERE id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query, data)
         return results
@@ -217,16 +214,16 @@ class Purchase:
         if len(data['item_name']) < 3:
             flash("Item name must be at least 3 characters.", "purchase")
             is_valid = False
-        if len(data['category']) < 3:
-            flash("Category must be at least 3 characters.", "purchase")
+        if len(data['quantity']) < 1:
+            flash("Please select your quantity.", "purchase")
             is_valid = False
-        if data['facility'] == '':
-            flash('Select your preferred facility.', "purchase")
-            is_valid = False
-        if len(data['city']) < 3:
+        if len(data['city']) < 1:
             flash("Select your preferred city.", "purchase")
             is_valid = False
-        if int(data['quantity']) < 1:
-            flash("Quantity must be at least 3 characters.", "purchase")
+        if len(data['facility']) < 1:
+            flash('Select your preferred facility.', "purchase")
+            is_valid = False
+        if len(data['category']) < 3:
+            flash("Please select a category.", "purchase")
             is_valid = False
         return is_valid

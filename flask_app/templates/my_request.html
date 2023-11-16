@@ -61,11 +61,45 @@
                             {% for gift in user_gifts %}
                             <tr>
                                 <td>{{ gift.item_name }}</td>
-                                <td>{{ gift.city }}</td>
-                                <td>{{ gift.facility }}</td>
-                                <td>{{ gift.category }}</td>
+                                {% if gift.city == 'newyork' %}
+                                    <td>New York, NY</td>
+                                {% endif %}
+                                {% if gift.city == 'losangeles' %}
+                                    <td>Los Angeles, CA</td>
+                                {% endif %}
+                                {% if gift.city == 'houston' %}
+                                    <td>Houston, TX</td>
+                                {% endif %}
+                                {% if gift.city == 'maui' %}
+                                    <td>Maui, HI</td>
+                                {% endif %}
+                                {% if gift.facility == 'goodwill' %}
+                                    <td>Goodwill</td>
+                                {% endif %}
+                                {% if gift.facility == 'salvationarmy' %}
+                                    <td>Salvation Army</td>
+                                {% endif %}
+                                {% if gift.facility == 'reliefcharity' %}
+                                    <td>Relief Charity</td>
+                                {% endif %}
+                                {% if gift.facility == 'foodbank' %}
+                                    <td>Food Bank</td>
+                                {% endif %}
+                                {% if gift.category == 'clothing' %}
+                                    <td>Clothing</td>
+                                {% endif %}
+                                {% if gift.category == 'groceries' %}
+                                    <td>Groceries</td>
+                                {% endif %}
+                                {% if gift.category == 'homegoods' %}
+                                    <td>Home Goods</td>
+                                {% endif %}
+                                {% if gift.category == 'water' %}
+                                    <td>Water (Case)</td>
+                                {% endif %}
                                 <td>{{ gift.quantity }}</td>
-                                <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
+                                <td><a href="/update/{{gift.id}}">Update</a> <a href="/cancel/{{gift.id}}">Cancel</a></td>
+                                
                             </tr>
                             {% endfor %}
                         </tbody>

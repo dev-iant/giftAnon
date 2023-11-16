@@ -41,16 +41,6 @@
                 <div class="register-left-top">
                     <form action="/register/user" method="post" class="register">
                         <h2 class="">Register</h2>
-                        <!-- {% with messages = get_flashed_messages(category_filter = ['register']) %} -->
-                            <!-- {% if messages %} -->
-                            <!-- <div class="" role="alert"> -->
-                                <!-- <strong> Flash</strong> -->
-                                <!-- {% for message in messages %} -->
-                                <!-- <p>{{message}}</p> -->
-                                <!-- {% endfor %} -->
-                            <!-- </div> -->
-                            <!-- {% endif %} -->
-                        <!-- {% endwith %} -->
                         <div class="form-group">
                             <label for="first_name" class="login-text">First Name: </label>
                             <input type="text" name="first_name" class="form-control" required>
@@ -79,6 +69,15 @@
                                 <option value="Admin">Admin</option>
                             </select>
                         </div>
+                        {% with messages = get_flashed_messages(category_filter = ['register']) %}
+                            {% if messages %}
+                            <div class="" role="alert">
+                                {% for message in messages %}
+                                <strong>{{message}}</strong><br />
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% endwith %}
                         <input type="submit" value="Register" class="button-register">
                     </form>
                 </div>
@@ -88,16 +87,6 @@
                 <div class="login-left-bottom">
                     <form action="/login" method="post" class="login">
                         <h2 class="">Login</h2>
-                        <!-- {% with messages = get_flashed_messages(category_filter = ['login']) %} -->
-                            <!-- {% if messages %} -->
-                            <!-- <div class="" role="alert"> -->
-                                <!-- <strong> Flash</strong> -->
-                                <!-- {% for message in messages %} -->
-                                <!-- <p>{{message}}</p> -->
-                                <!-- {% endfor %} -->
-                            <!-- </div> -->
-                            <!-- {% endif %} -->
-                        <!-- {% endwith %} -->
                         <div class="form-group">
                             <label for="email" class="">Email: </label>
                             <input type="text" name="email" class="form-control" required>
@@ -106,6 +95,14 @@
                             <label for="password" class="">Password: </label>
                             <input type="password" name="password" class="form-control" required>
                         </div>
+                        {% with messages = get_flashed_messages(category_filter = ['login']) %}
+                            {% if messages %}
+                            <div class="" role="alert">
+                                {% for message in messages %}
+                                <strong>{{message}}</strong>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
                         <input type="submit" value="Login" class="button-login">
                     </form>
                 </div>
