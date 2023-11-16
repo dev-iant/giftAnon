@@ -30,8 +30,11 @@
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
             <div class="links-right">
-                <a href="#" class="text">Home</a>
-                <a href="#" class="text">Gifts Given</a>
+                <a href="/home" class="text">Home</a>
+                {% if session['role'] == 'Admin' %}
+                    <a href="/my_gifts" class="text">My Requests</a>
+                {% endif %}
+                <a href="/logout">Logout</a>
             </div>
             
         </div>
@@ -49,54 +52,25 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <td>Enter City</td>
-                                <td>Enter Facility</td>
-                                <td>Enter Category</td>
-                                <td>Enter Item</td>
-                                <td>Enter QTY</td>
-                                <td>QTY Received</td>
+                                <td>City</td>
+                                <td>Facility</td>
+                                <td>Category</td>
+                                <td>Item</td>
+                                <td>QTY</td>
                                 <td>Action</td>
                             </tr>
                         </thead>
-
                         <tbody class="">
+                            {% for gift in user_gifts %}
                             <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Bedframe</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Update</a></td>
+                                <td>{{ gift.city }}</td>
+                                <td>{{ gift.facility }}</td>
+                                <td>{{ gift.category }}</td>
+                                <td>{{ gift.item_name }}</td>
+                                <td>{{ gift.quantity }}</td>
+                                <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
                             </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Size Comforter</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Update</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Twin Sheet Set</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Update</a></td>
-                            </tr>
-
-                            <tr>
-                                <td><a href="#" class="">Maui HI</a></td>
-                                <td><a href="#" class="">Goodwill</a></td>
-                                <td><a href="#" class="">Standard Pillow</a></td>
-                                <td><a href="#" class="">3</a></td>
-                                <td><a href="#" class="">Update</a></td>
-                            </tr>
+                            {% endfor %}
                         </tbody>
 
                     </table>
@@ -106,7 +80,7 @@
                 <!-- home-left-bottom -->
                 <div class="home-left-bottom">
                     <div class="links-left-bottom">
-                        <a href="#" class="">Need Something Else?</a>
+                        <a href="/item/custom" class="">Need Something Else?</a>
                     </div>
                 <!-- THIS IS FOR THE API LINK TO THE MAP  -->
                 <!-- I DON'T KNOW HOW TO ADD IT SO I'LL NEED HELP OR I CAN GOOGLE IT -->

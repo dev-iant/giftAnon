@@ -55,23 +55,30 @@ class User:
         FROM users
         LEFT JOIN purchases
         ON users.id = purchases.user_id
-        WHERE users.id = %(id)s;"""
+        WHERE purchaser_id = %(id)s;"""
+        results = connectToMySQL(cls.db).query_db(query,data)
+        return results
+    
+    @classmethod
+    def get_user_gifts(cls, data):
+        query = """ 
+        SELECT *
+        FROM users
+        LEFT JOIN purchases
+        ON users.id = purchases.user_id
+        WHERE users.id = %(id)s"""
         results = connectToMySQL(cls.db).query_db(query,data)
         purchase_list = []
         for result in results:
-            this_purchase = cls(result)
+            this_list = cls(result)
             purchase_data = {
-                    "id": result['id'],
-                    "title": result['title'],
-                    "network": result['network'],
-                    "date": result['date'],
-                    "description": result['description'],
-                    "created_at": result['purchases.created_at'],
-                    "updated_at": result['purchases.updated_at']
+                "city": result['city'],
+                "facility": result['facility'],
+                "item_name": result['item_name'],
+                "quantity": result['quantity']
             }
-            this_purchase.purchases.append(purchase.Purchase(purchase_data))
-            purchase_list.append(this_purchase)
-        return purchase_list
+            purchase_list.append(this_list)
+        return results
 
     # Update Users Models
 

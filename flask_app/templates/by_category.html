@@ -32,8 +32,10 @@
 
             <div class="links-right">
                 <a href="/home" class="text">Home</a>
-                <a href="#" class="text">My Requests</a>
-                <a href="#" class="text">Gifts Given</a>
+                {% if session['role'] == 'Admin' %}
+                    <a href="/my_gifts" class="text">My Requests</a>
+                {% endif %}
+                <a href="/gift/given" class="text">Gifts Given</a>
             </div>
             
         </div>
@@ -62,7 +64,7 @@
                                 {% if not category.purchaser_id %}
                                 <td>{{ category.item_name }}</td>
                                 <td>{{ category.quantity }}</td>
-                                <td><a href="/gift/{{facility.id}}/{{session['id']}}">Gift</a></td>
+                                <td><a href="/gift/{{category.id}}/{{session['id']}}">Gift</a></td>
                                 {% endif %}
                             </tr>
                             {% endfor %}
