@@ -52,9 +52,7 @@ class User:
     def get_user_purchases(cls, data):
         query = """
         SELECT * 
-        FROM users
-        LEFT JOIN purchases
-        ON users.id = purchases.user_id
+        FROM purchases
         WHERE purchaser_id = %(id)s;"""
         results = connectToMySQL(cls.db).query_db(query,data)
         return results
@@ -63,21 +61,9 @@ class User:
     def get_user_gifts(cls, data):
         query = """ 
         SELECT *
-        FROM users
-        LEFT JOIN purchases
-        ON users.id = purchases.user_id
-        WHERE users.id = %(id)s"""
+        FROM purchases
+        WHERE user_id = %(id)s"""
         results = connectToMySQL(cls.db).query_db(query,data)
-        purchase_list = []
-        for result in results:
-            this_list = cls(result)
-            purchase_data = {
-                "city": result['city'],
-                "facility": result['facility'],
-                "item_name": result['item_name'],
-                "quantity": result['quantity']
-            }
-            purchase_list.append(this_list)
         return results
 
     # Update Users Models

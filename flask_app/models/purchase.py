@@ -202,7 +202,7 @@ class Purchase:
         return results
     
     @classmethod
-    def delete(cls, id):
+    def deletePurchase(cls, id):
         data = {
             'id' : id
         }
@@ -226,7 +226,7 @@ class Purchase:
         if len(data['city']) < 3:
             flash("Select your preferred city.", "purchase")
             is_valid = False
-        if len(data['quantity']) < 1:
+        if int(data['quantity']) < 1:
             flash("Quantity must be at least 3 characters.", "purchase")
             is_valid = False
         return is_valid

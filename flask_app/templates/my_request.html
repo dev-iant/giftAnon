@@ -8,7 +8,7 @@
     <meta name="description" content="">
 	<meta name="keywords" content="">
 	<link href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css" rel=" stylesheet">
-    <link rel="stylesheet" href="giftAnon\flask_app\static\css\style.css">
+    <link rel="stylesheet" href="{{url_for('static',filename='css/style.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;600;700&family=Handlee&family=Nanum+Pen+Script&family=Palanquin:wght@100;200;300;400;500;600&family=Sulphur+Point:wght@300;400;700&display=swap" rel="stylesheet">
@@ -31,9 +31,6 @@
 
             <div class="links-right">
                 <a href="/home" class="text">Home</a>
-                {% if session['role'] == 'Admin' %}
-                    <a href="/my_gifts" class="text">My Requests</a>
-                {% endif %}
                 <a href="/logout">Logout</a>
             </div>
             
@@ -52,10 +49,10 @@
                     <table class="table">
                         <thead>
                             <tr>
+                                <td>Item</td>
                                 <td>City</td>
                                 <td>Facility</td>
                                 <td>Category</td>
-                                <td>Item</td>
                                 <td>QTY</td>
                                 <td>Action</td>
                             </tr>
@@ -63,10 +60,10 @@
                         <tbody class="">
                             {% for gift in user_gifts %}
                             <tr>
+                                <td>{{ gift.item_name }}</td>
                                 <td>{{ gift.city }}</td>
                                 <td>{{ gift.facility }}</td>
                                 <td>{{ gift.category }}</td>
-                                <td>{{ gift.item_name }}</td>
                                 <td>{{ gift.quantity }}</td>
                                 <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
                             </tr>

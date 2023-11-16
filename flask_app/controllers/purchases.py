@@ -10,7 +10,7 @@ def create_item():
         return redirect('/')
     return render_template('items_form.html')
 
-@app.route('/createitem', methods=['POST'])
+@app.route('/create/item', methods=['POST'])
 def createitem():
     if not purchase.Purchase.validate_purchase(request.form):
         return redirect('/item/custom')
@@ -132,9 +132,9 @@ def updating(id):
     return redirect('items_form.html')
 
 #DELETE
-@app.route("/delete/<int:id>", methods=['POST', 'GET'])
-def deleteshow(id):
+@app.route("/cancel/<int:id>", methods=['POST', 'GET'])
+def deletePurchase(id):
     if 'id' not in session:
         return redirect ('/')
-    purchase.Purchase.delete(id)
-    return redirect('my_request.html')
+    purchase.Purchase.deletePurchase(id)
+    return redirect('/my_gifts')
