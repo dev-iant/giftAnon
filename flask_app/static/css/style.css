@@ -189,16 +189,16 @@
     margin-right: 20%;
 }
 
-.form-group{
+.form-group, .dropdown-content{
     display: flex;
     flex-direction: column;
 }
 
-.login-text{
+.login-text, {
     color:  #31313B;
 }
 
-.form-control{
+.form-control, #role{
     background-color: rgb(242,210,203, 0.3);
     border: 1px dashed #31313B;
     padding: 8px;
