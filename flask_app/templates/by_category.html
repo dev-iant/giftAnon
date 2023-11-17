@@ -61,6 +61,9 @@
                             </tr>
                         </thead>
                         <tbody class="">
+                            {% if category_gifts == False %}
+                                <p>This category has no entries.</p>
+                            {% else %}
                             {% for category in category_gifts %}
                             <tr>
                                 {% if not category.purchaser_id %}
@@ -70,8 +73,8 @@
                                 {% endif %}
                             </tr>
                             {% endfor %}
+                            {% endif %}
                         </tbody>
-
                     </table>
                 </div>
                 <!-- /home-left-top -->
