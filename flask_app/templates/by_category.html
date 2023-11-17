@@ -70,7 +70,12 @@
                                                 {% if not category.purchaser_id %}
                                                 <td>{{ category.item_name }}</td>
                                                 <td>{{ category.quantity }}</td>
-                                                <td><a href="/gift/{{category.id}}/{{session['id']}}">Gift</a></td>
+                                                {% if category.user_id == session['id'] %}
+                                                    <td><a href="/update/{{category.id}}">Update</a> | <a href="/cancel/{{category.id}}">Cancel</a></td>
+                                                {% endif %}
+                                                {% if (category.user_id != session['id'] and session['role'] == 'User') %}
+                                                    <td><a href="/gift/{{category.id}}/{{session['id']}}">Gift</a></td>
+                                                {% endif %}
                                                 {% endif %}
                                             </tr>
                                             {% endfor %}

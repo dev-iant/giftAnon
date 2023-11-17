@@ -96,7 +96,7 @@
                                         <td>Food Bank</td>
                                     {% endif %}
                                 {% if gift.user_id == session['id'] %}
-                                    <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
+                                    <td><a href="/update/{{gift.id}}">Update</a> | <a href="/cancel/{{gift.id}}">Cancel</a></td>
                                 {% endif %}
                                 {% if (gift.user_id != session['id'] and session['role'] == 'User') %}
                                     <td><a href="/gift/{{gift.id}}/{{session['id']}}">Gift</a></td>

@@ -66,7 +66,12 @@
                                 {% if not city.purchaser_id %}
                                 <td>{{ city.item_name }}</td>
                                 <td>{{ city.quantity }}</td>
-                                <td><a href="/gift/{{city.id}}/{{session['id']}}">Gift</a></td>
+                                {% if city.user_id == session['id'] %}
+                                    <td><a href="/update/{{city.id}}">Update</a> | <a href="/cancel/{{city.id}}">Cancel</a></td>
+                                {% endif %}
+                                {% if (city.user_id != session['id'] and session['role'] == 'User') %}
+                                    <td><a href="/gift/{{city.id}}/{{session['id']}}">Gift</a></td>
+                                {% endif %}
                                 {% endif %}
                             </tr>
                             {% endfor %}

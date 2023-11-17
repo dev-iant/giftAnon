@@ -8,10 +8,14 @@ from flask import flash
 def create_item():
     if not session:
         return redirect('/')
+    if session['role'] == 'User':
+        return redirect('/home')
     return render_template('items_form.html')
 
-@app.route('/create/item', methods=['POST'])
+@app.route('/create/item', methods=['POST', 'GET'])
 def createitem():
+    if session['role'] == 'User':
+        return redirect('/home')
     if not purchase.Purchase.validate_purchase(request.form):
         return redirect('/item/custom')
     data = {
@@ -86,6 +90,8 @@ def display():
     user_gifts = user.User.get_user_gifts(data)
     if 'id' not in session:
         return redirect('/')
+    if session['role'] == 'User':
+        return redirect('/home')
     return render_template('my_request.html', user_gifts = user_gifts)
 
 @app.route('/item/<int:id>')
@@ -99,6 +105,8 @@ def showone(id):
 def show_user_gifts():
     if 'id' not in session:
         return redirect('/')
+    if session['role'] == 'Admin':
+        return redirect ('/home')
     id = session['id']
     user_gifts = purchase.Purchase.get_all_purchases(id)
     return render_template('gifts_given.html', user_gifts = user_gifts)
@@ -159,5 +167,7 @@ def updating(id):
 def deletePurchase(id):
     if 'id' not in session:
         return redirect ('/')
+    if session['role'] != 'Admin':
+        return redirect ('/home')
     purchase.Purchase.deletePurchase(id)
     return redirect('/my_gifts')
