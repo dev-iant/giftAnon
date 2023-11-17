@@ -53,69 +53,67 @@
                 <!-- home-left-top -->
                 <div class="home-left-top">
                     <h2 class="gift-requests">Gift Requests</h2>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Select by City</td>
+                                <td>Select by Facility</td>
+                                <td>Select by Category</td>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            <tr>
+                                <td><a href="/city/newyork" class="">New York NY</a></td>
+                                <td><a href="/facility/goodwill" class="">Goodwill</a></td>
+                                <td><a href="/category/clothing" class="">Clothing</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/city/losangeles" class="">Los Angeles CA</a></td>
+                                <td><a href="/facility/salvationarmy" class="">Salvation Army</a></td>
+                                <td><a href="/category/homegoods" class="">Home Goods</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/city/maui" class="">Maui HI</a></td>
+                                <td><a href="/facility/foodbank" class="">Food Bank</a></td>
+                                <td><a href="/category/groceries" class="">Groceries</a></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/city/houston" class="">Houston TX</a></td>
+                                <td><a href="/facility/reliefcharity" class="">Relief Charity</a></td>
+                                <td><a href="/category/water" class="">Water (Case)</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /home-left-top -->
 
-
-                    <div class="sorting-block "
-                        style="display: flex;  flex-direction: row; justify-content: space-between;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td>Select by City</td>
-                                    <td>Select by Facility</td>
-                                    <td>Select by Category</td>
-                                </tr>
-                            </thead>
-                            <tbody class="">
-                                <tr>
-                                    <td><a href="/city/newyork" class="">New York NY</a></td>
-                                    <td><a href="/facility/goodwill" class="">Goodwill</a></td>
-                                    <td><a href="/category/clothing" class="">Clothing</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="/city/losangeles" class="">Los Angeles CA</a></td>
-                                    <td><a href="/facility/salvationarmy" class="">Salvation Army</a></td>
-                                    <td><a href="/category/homegoods" class="">Home Goods</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="/city/maui" class="">Maui HI</a></td>
-                                    <td><a href="/facility/foodbank" class="">Food Bank</a></td>
-                                    <td><a href="/category/groceries" class="">Groceries</a></td>
-                                </tr>
-                                <tr>
-                                    <td><a href="/city/houston" class="">Houston TX</a></td>
-                                    <td><a href="/facility/reliefcharity" class="">Relief Charity</a></td>
-                                    <td><a href="/category/water" class="">Water (Case)</a></td>
-                                </tr>
-                            </tbody>
-                        </table>
+                <!-- home-left-bottom -->
+                <div class="home-left-bottom">
+                    <div class="links-left-bottom">
+                        {% if session['role'] == 'Admin' %}
+                            <button><a href="/item/custom">Create A Gift Request!</a></button>
+                        {% endif %}
+                    </div>
+                    <div class="links-left-bottom">
+                        <button><a href="/viewall">View All Gifts</a></button>
                     </div>
                 </div>
-            </div>
-            <!-- /home-left-top -->
+                <!-- /home-left-bottom -->
 
-            <!-- home-left-bottom -->
-            <div class="home-left-bottom">
-                {% if session['role'] == 'Admin' %}
-                    <button><a href="/item/custom">Create A Gift Request!</a></button>
-                {% endif %}
-                <button><a href="/viewall">View All Gifts</a></button>
             </div>
-            <!-- /home-left-bottom -->
+            <!-- /main left side -->
+
+
+            <!-- main right side -->
+            <div class="main-right">
+                <!-- background-image -->
+
+
+            </div>
+            <!-- /right side -->
 
         </div>
-        <!-- /main left side -->
-
-
-        <!-- main right side -->
-        <div class="main-right">
-            <!-- background-image -->
-
-
-        </div>
-        <!-- /right side -->
-
-    </div>
-    <!--/container-->
+        <!--/container-->
     </div>
     <!-- /wrapper -->
 </body>
