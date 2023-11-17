@@ -59,49 +59,54 @@
 
                             <div class="dropdown">
                                 <label for="quantity" class="dropbtn">Quantity: </label>
-                                <select id="quantity" class="dropdown-content" name="quantity" onchange="selectOption(this)">
-                                    <option value="{{one_purchase.quantity}}" selected="selected" hidden>{{one_purchase.quantity}}</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                </select>
+                                <div class="dropdown-content">
+                                    <select id="quantity" class="dropdown-content" name="quantity" onchange="selectOption(this)">
+                                        <option value="{{one_purchase.quantity}}" selected="selected" hidden>{{one_purchase.quantity}}</option>
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                </div>
                             </div>
 
                             <div class="dropdown">
                                 <label for="city" class="dropbtn">City: </label>
+                                <div class="dropdown-content">
                                 <select id="city" class="dropdown-content" name="city"  onchange="selectOption(this)">
                                         <option value="{{one_purchase.city}}" selected="selected" hidden>{{one_purchase.city}}</option>
                                         <option value="newyork">New York, NY</option>
                                         <option value="maui">Maui, HI</option>
                                         <option value="houston">Houston, TX</option>
                                         <option value="losangeles">Los Angeles, CA</option>
-                                    </select>
+                                </select>
                                 </div>
                             </div>
 
                             <div class="dropdown">
                                 <label for="facility" class="dropdown-content">Facility: </label>
-                                <select id="facility" class="dropdown-content" name="facility"  onchange="selectOption(this)">
-                                        <option value="{{one_purchase.facility}}" selected="selected" hidden>{{one_purchase.facility}}</option>
-                                        <option value="goodwill">Goodwill</option>
-                                        <option value="salvationarmy">Salvation Army</option>
-                                        <option value="foodbank">Food Bank</option>
-                                        <option value="reliefcharity">Relief Charity</option>
+                                <div class="dropdown-content">
+                                    <select id="facility" class="dropdown-content" name="facility"  onchange="selectOption(this)">
+                                            <option value="{{one_purchase.facility}}" selected="selected" hidden>{{one_purchase.facility}}</option>
+                                            <option value="goodwill">Goodwill</option>
+                                            <option value="salvationarmy">Salvation Army</option>
+                                            <option value="foodbank">Food Bank</option>
+                                            <option value="reliefcharity">Relief Charity</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="dropdown">
                                 <label for="category" class="dropdown-content">Category: </label>
-                                <select id="category" class="dropdown-content" name="category"  onchange="selectOption(this)">
-                                        <option value="{{one_purchase.category}}" selected="selected" hidden>{{one_purchase.category}}</option>
-                                        <option value="clothing">Clothing</option>
-                                        <option value="homegoods">Home Goods</option>
-                                        <option value="groceries">Groceries</option>
-                                        <option value="water">Water (Case)</option>
+                                <div class="dropdown-content">
+                                    <select id="category" class="dropdown-content" name="category"  onchange="selectOption(this)">
+                                            <option value="{{one_purchase.category}}" selected="selected" hidden>{{one_purchase.category}}</option>
+                                            <option value="clothing">Clothing</option>
+                                            <option value="homegoods">Home Goods</option>
+                                            <option value="groceries">Groceries</option>
+                                            <option value="water">Water (Case)</option>
                                     </select>
                                 </div>
                             </div>
@@ -115,7 +120,7 @@
                                 {% endif %}
                             {% endwith %}
                             <div>
-                                <button>Submit</button>
+                                <button class="links-left-bottom">Submit</button>
                             </div>
                         </form>
                     </div>
