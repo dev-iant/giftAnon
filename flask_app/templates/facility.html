@@ -23,9 +23,10 @@
         }
     </style>
 </head>
-<body>
+<body background="{{url_for('static',filename='images/facility.jpg')}}">
+
     <div class="wrapper">
-    <!-- navbar -->
+        <!-- navbar -->
         <div class="navbar">
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
 
@@ -43,7 +44,7 @@
         <!-- /navbar -->
 
         <!-- container -->
-        <div class="container">
+        <div class="container-facility">
             <!-- main left side -->
             <div class="main-left">
 
@@ -60,86 +61,90 @@
 
                 <!-- home-left-bottom -->
                 <div class="home-left-bottom">
-                    {% if one_gift.city == 'houston' and one_gift.facility == 'foodbank' %}
-                            <p>Houston Food Bank</p>
-                            <p>535 Portwall St.</p>
-                            <p>Houston, TX  77029</p>
-                            {% endif %}
-                            {% if one_gift.city == 'houston' and one_gift.facility == 'salvationarmy' %}
-                            <p>The Salvation Army</p>
-                            <p>1717 Congress St.</p>
-                            <p>Houston, TX 77002</p>
-                            {% endif %}
-                            {% if one_gift.city == 'houston' and one_gift.facility == 'reliefcharity' %}
-                            <p>Emergency Aid Coalition</p>
-                            <p>5401 Fannin St.</p>
-                            <p>Houston, TX 77004</p>
-                            {% endif %}
-                            {% if one_gift.city == 'houston' and one_gift.facility == 'goodwill' %}
-                            <p>Goodwill Houston Select Stores</p>
-                            <p>2030 Westheimer Rd.</p>
-                            <p>Houston, TX 77019</p>
-                            {% endif %}
-                            {% if one_gift.city == 'maui' and one_gift.facility == 'foodbank' %}
-                            <p>Maui Food Bank</p>
-                            <p>760 Kolu St.</p>
-                            <p>Wailuku, HI 96793</p>
-                            {% endif %}
-                            {% if one_gift.city == 'maui' and one_gift.facility == 'salvationarmy' %}
-                            <p>The Salvation Army Family Store & Donation Center</p>
-                            <p>135 Shaw St.</p>
-                            <p>Lahaina, HI  96761</p>
-                            {% endif %}
-                            {% if one_gift.city == 'maui' and one_gift.facility == 'goodwill' %}
-                            <p>Goodwill Store and Donation Center</p>
-                            <p>250 Alamaha St. N10B</p>
-                            <p>Kahului, HI  96732</p>
-                            {% endif %}
-                            {% if one_gift.city == 'maui' and one_gift.facility == 'reliefcharity' %}
-                            <p>Maui United Way</p>
-                            <p>95 Mahalani St. #24</p>
-                            <p>Wailuku, HI 96793</p>
-                            {% endif %}
-                            {% if one_gift.city == 'losangeles' and one_gift.facility == 'foodbank' %}
-                            <p>Los Angeles Regional Food Bank</p>
-                            <p>1734 E. 41st St.</p>
-                            <p>Los Angeles, CA  90058</p>
-                            {% endif %}
-                            {% if one_gift.city == 'losangeles' and one_gift.facility == 'goodwill' %}
-                            <p>Goodwill Southern California Store & Donation Center</p>
-                            <p>4575 Hollywood Blvd.</p>
-                            <p>Los Angeles, CA  90027</p>
-                            {% endif %}
-                            {% if one_gift.city == 'losangeles' and one_gift.facility == 'reliefcharity' %}
-                            <p>Catholic Charities of Los Angeles, Inc.</p>
-                            <p>1531 James M. Wood Blvd.</p>
-                            <p>Los Angeles, CA  90017</p>
-                            {% endif %}
-                            {% if one_gift.city == 'losangeles' and one_gift.facility == 'salvationarmy' %}
-                            <p>Salvation Army the Siemon Center Central Avenue</p>
-                            <p>7651 S. Central Ave.</p>
-                            <p>Los Angeles, CA  90001</p>
-                            {% endif %}
-                            {% if one_gift.city == 'newyork' and one_gift.facility == 'goodwill' %}
-                            <p>Goodwill NYNJ Store & Donation Center</p>
-                            <p>1704 2nd Ave.</p>
-                            <p>New York, NY 10128</p>
-                            {% endif %}
-                            {% if one_gift.city == 'newyork' and one_gift.facility == 'salvationarmy' %}
-                            <p>The Salvation Army Times Square Corps Community Center</p>
-                            <p>315 W. 47th St.</p>
-                            <p>New York, NY 10036</p>
-                            {% endif %}
-                            {% if one_gift.city == 'newyork' and one_gift.facility == 'reliefcharity' %}
-                            <p>New York Disaster Interfaith Services (NYDIS)</p>
-                            <p>4 W. 43rd. St. Suite 407</p>
-                            <p>New York, NY 10036</p>
-                            {% endif %}
-                            {% if one_gift.city == 'newyork' and one_gift.facility == 'foodbank' %}
-                            <p>Grand Central Neighborhood Social Services Food Distribution Center</p>
-                            <p>120 E. 32nd St.</p>
-                            <p>New York, NY 10016</p>
-                            {% endif %}
+                    <div class="gift-requests-address">
+                        {% if one_gift.city == 'houston' and one_gift.facility == 'foodbank' %}
+                                <p>Houston Food Bank</p>
+                                <p>535 Portwall St.</p>
+                                <p>Houston, TX  77029</p>
+                                {% endif %}
+                                {% if one_gift.city == 'houston' and one_gift.facility == 'salvationarmy' %}
+                                <p>The Salvation Army</p>
+                                <p>1717 Congress St.</p>
+                                <p>Houston, TX 77002</p>
+                                {% endif %}
+                                {% if one_gift.city == 'houston' and one_gift.facility == 'reliefcharity' %}
+                                <p>Emergency Aid Coalition</p>
+                                <p>5401 Fannin St.</p>
+                                <p>Houston, TX 77004</p>
+                                {% endif %}
+                                {% if one_gift.city == 'houston' and one_gift.facility == 'goodwill' %}
+                                <p>Goodwill Houston Select Stores</p>
+                                <p>2030 Westheimer Rd.</p>
+                                <p>Houston, TX 77019</p>
+                                {% endif %}
+                                {% if one_gift.city == 'maui' and one_gift.facility == 'foodbank' %}
+                                <p>Maui Food Bank</p>
+                                <p>760 Kolu St.</p>
+                                <p>Wailuku, HI 96793</p>
+                                {% endif %}
+                                {% if one_gift.city == 'maui' and one_gift.facility == 'salvationarmy' %}
+                                <p>The Salvation Army Family Store & Donation Center</p>
+                                <p>135 Shaw St.</p>
+                                <p>Lahaina, HI  96761</p>
+                                {% endif %}
+                                {% if one_gift.city == 'maui' and one_gift.facility == 'goodwill' %}
+                                <p>Goodwill Store and Donation Center</p>
+                                <p>250 Alamaha St. N10B</p>
+                                <p>Kahului, HI  96732</p>
+                                {% endif %}
+                                {% if one_gift.city == 'maui' and one_gift.facility == 'reliefcharity' %}
+                                <p>Maui United Way</p>
+                                <p>95 Mahalani St. #24</p>
+                                <p>Wailuku, HI 96793</p>
+                                {% endif %}
+                                {% if one_gift.city == 'losangeles' and one_gift.facility == 'foodbank' %}
+                                <p>Los Angeles Regional Food Bank</p>
+                                <p>1734 E. 41st St.</p>
+                                <p>Los Angeles, CA  90058</p>
+                                {% endif %}
+                                {% if one_gift.city == 'losangeles' and one_gift.facility == 'goodwill' %}
+                                <p>Goodwill Southern California Store & Donation Center</p>
+                                <p>4575 Hollywood Blvd.</p>
+                                <p>Los Angeles, CA  90027</p>
+                                {% endif %}
+                                {% if one_gift.city == 'losangeles' and one_gift.facility == 'reliefcharity' %}
+                                <p>Catholic Charities of Los Angeles, Inc.</p>
+                                <p>1531 James M. Wood Blvd.</p>
+                                <p>Los Angeles, CA  90017</p>
+                                {% endif %}
+                                {% if one_gift.city == 'losangeles' and one_gift.facility == 'salvationarmy' %}
+                                <p>Salvation Army the Siemon Center Central Avenue</p>
+                                <p>7651 S. Central Ave.</p>
+                                <p>Los Angeles, CA  90001</p>
+                                {% endif %}
+                                {% if one_gift.city == 'newyork' and one_gift.facility == 'goodwill' %}
+                                <p>Goodwill NYNJ Store & Donation Center</p>
+                                <p>1704 2nd Ave.</p>
+                                <p>New York, NY 10128</p>
+                                {% endif %}
+                                {% if one_gift.city == 'newyork' and one_gift.facility == 'salvationarmy' %}
+                                <p>The Salvation Army Times Square Corps Community Center</p>
+                                <p>315 W. 47th St.</p>
+                                <p>New York, NY 10036</p>
+                                {% endif %}
+                                {% if one_gift.city == 'newyork' and one_gift.facility == 'reliefcharity' %}
+                                <p>New York Disaster Interfaith Services (NYDIS)</p>
+                                <p>4 W. 43rd. St. Suite 407</p>
+                                <p>New York, NY 10036</p>
+                                {% endif %}
+                                {% if one_gift.city == 'newyork' and one_gift.facility == 'foodbank' %}
+                                <p>Grand Central Neighborhood Social Services Food Distribution Center</p>
+                                <p>120 E. 32nd St.</p>
+                                <p>New York, NY 10016</p>
+                                {% endif %}
+                                <br><br>
+                                <a href="https://www.amazon.com/s?k={{one_gift.item_name}}" class="bold-text">Order your {{one_gift.item_name}} here!</a>
+                    </div>
 
 
                     <!-- THIS IS FOR THE API LINK TO THE MAP -->

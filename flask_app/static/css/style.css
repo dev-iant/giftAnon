@@ -36,7 +36,22 @@
 .gift-requests{
     text-align: center;
     color: #31313B;
-    font-size: 24pt;
+    font-size: 18pt;
+    margin-top: 6%;
+}
+
+.gift-requests-address{
+    text-align: center;
+    color: #31313B;
+    font-size: 12pt;
+    margin-top: 6%;
+    font-style: italic;
+}
+
+.bold-text{
+    font-family: 'Nanum Pen Script', cursive;
+    font-size: 32pt;
+    text-decoration: underline;
 }
 
 .text{
@@ -60,10 +75,23 @@
 .container{
     width: 100%;
     margin-top: 130px;
+    margin-left: 80px;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     position: fixed;
+    /* gap: 40%; */
+}
+
+.container-facility{
+    width: 100%;
+    margin-top: 130px;
+    margin-left: 80px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    position: fixed;
+    gap: 10%;
 }
 
 .main-left, .main-right{
@@ -86,7 +114,8 @@
     width: 50%;
     align-self: auto;
     flex: 1 1 2;
-    
+    margin-top: 3px;
+    margin-left: 5%;
 }
 
 .home-left-top, .home-left-bottom{
