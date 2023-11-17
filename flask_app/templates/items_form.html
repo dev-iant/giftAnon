@@ -29,7 +29,6 @@
     <!-- navbar -->
         <div class="navbar">
             <h1 class="greeting">Hi, {{session['first_name']}}!</h1>
-
             <div class="links-right">
                 <a href="/home" class="text">Home</a>
                 {% if session['role'] == 'Admin' %}
@@ -39,7 +38,6 @@
                 {% endif %}
                 <a href="/logout" class="text">Logout</a>
             </div>
-            
         </div>
         <!-- /navbar -->
 
@@ -50,17 +48,17 @@
 
                 <!-- home-left-top -->
                 <div class="home-left-top">
-                    <div class="">
+                    <div class="form-group">
                         <form action="/create/item" method="post" class="purchase">
                             <div class="form-group">
                                 <label for="item_name" class="">Item Name: </label>
                                 <input type="text" name="item_name" class="form-control" required>
                             </div>
 
-                            <div class="dropdown">
+                            <div class="form-group">
                                 <label for="quantity" class="dropbtn">Quantity: </label>
                                 <select id="quantity" class="dropdown-content" name="quantity" onchange="selectOption(this)">
-                                    <option value="" selected="selected" hidden>--Select Quantity--</option>
+                                    <option value="Select Quantity" selected="selected" hidden>--Select Quantity--</option>
                                     <option value="0">0</option>
                                     <option value="1">1</option>
                                     <option value="2">2</option>
@@ -70,7 +68,7 @@
                                 </select>
                             </div>
 
-                            <div class="dropdown">
+                            <div class="form-group">
                                 <label for="city" class="dropbtn">City: </label>
                                 <select id="city" class="dropdown-content" name="city"  onchange="selectOption(this)">
                                         <option value="" selected="selected" hidden>--Select City--</option>
@@ -78,56 +76,54 @@
                                         <option value="maui">Maui, HI</option>
                                         <option value="houston">Houston, TX</option>
                                         <option value="losangeles">Los Angeles, CA</option>
-                                    </select>
-                                </div>
+                                </select>
                             </div>
 
-                            <div class="dropdown">
-                                <label for="facility" class="dropdown-content">Facility: </label>
+                            <div class="form-group">
+                                <label for="facility" class="dropbtn">Facility: </label>
                                 <select id="facility" class="dropdown-content" name="facility"  onchange="selectOption(this)">
                                         <option value="" selected="selected" hidden>--Select Facility--</option>
                                         <option value="goodwill">Goodwill</option>
                                         <option value="salvationarmy">Salvation Army</option>
                                         <option value="foodbank">Food Bank</option>
                                         <option value="reliefcharity">Relief Charity</option>
-                                    </select>
-                                </div>
+                                </select>
                             </div>
 
-                            <div class="dropdown">
-                                <label for="category" class="dropdown-content">Category: </label>
+                            <div class="form-group">
+                                <label for="category" class="dropbtn">Category: </label>
                                 <select id="category" class="dropdown-content" name="category"  onchange="selectOption(this)">
-                                        <option value="" selected="selected" hidden>--Select Category--</option>
+                                        <option value="" selected="selected" hidden>--Select Facility--</option>
                                         <option value="clothing">Clothing</option>
                                         <option value="homegoods">Home Goods</option>
                                         <option value="groceries">Groceries</option>
                                         <option value="water">Water (Case)</option>
-                                    </select>
-                                </div>
+                                </select>
                             </div>
-                            {% with messages = get_flashed_messages(category_filter = ['purchase']) %}
-                                {% if messages %}
-                                <div class="" role="alert">
-                                    {% for message in messages %}
-                                    <strong>{{message}}</strong><br />
-                                    {% endfor %}
-                                </div>
-                                {% endif %}
-                            {% endwith %}
-                            <div>
-                                <button>Submit</button>
-                            </div>
+                            <button class="links-left-bottom">Submit</button>
                         </form>
                     </div>
                 </div>
                 <!-- /home-left-top -->
 
-            <!-- home-left-bottom -->
-            <div class="home-left-bottom">
-                <!-- THIS IS FOR THE API LINK TO THE MAP -->
-                <!-- I DON'T KNOW HOW TO ADD IT SO I'LL NEED HELP OR I CAN GOOGLE IT -->
-            </div>
-            <!-- /home-left-bottom -->
+                <!-- home-left-bottom -->
+                <div class="home-left-bottom">
+                    <div class="links-left-bottom">
+                        {% with messages = get_flashed_messages(category_filter = ['purchase']) %}
+                            {% if messages %}
+                            <div class="" role="alert">
+                                {% for message in messages %}
+                                <strong>{{message}}</strong><br />
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        {% endwith %}
+                        <!-- <form action=""> -->
+                            <button class="links-left-bottom"></button>
+                        <!-- </form> -->
+                    </div>
+                </div>
+                <!-- /home-left-bottom -->
 
             </div>
             <!-- /main left side -->
