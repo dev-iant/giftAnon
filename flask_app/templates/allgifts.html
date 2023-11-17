@@ -55,73 +55,72 @@
                     <h2 class="gift-requests">All Gift Requests</h2>
 
 
-                    <div class="sorting-block "
-                        style="display: flex;  flex-direction: row; justify-content: space-between;">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <td>Item</td>
-                                    <td>QTY</td>
-                                    <td>City</td>
-                                    <td>Facility</td>
-                                    <td>Action</td>
-                                </tr>
-                            </thead>
-                            <tbody class="">
-                                {% for gift in all_gifts %}
-                                <tr>
-                                    {% if not gift.purchaser_id %}
-                                    <td>{{ gift.item_name }}</td>
-                                    <td>{{ gift.quantity }}</td>
-                                        {% if gift.city == 'newyork' %}
-                                            <td>New York, NY</td>
-                                        {% endif %}
-                                        {% if gift.city == 'losangeles' %}
-                                            <td>Los Angeles, CA</td>
-                                        {% endif %}
-                                        {% if gift.city == 'houston' %}
-                                            <td>Houston, TX</td>
-                                        {% endif %}
-                                        {% if gift.city == 'maui' %}
-                                            <td>Maui, HI</td>
-                                        {% endif %}
-                                        {% if gift.facility == 'goodwill' %}
-                                            <td>Goodwill</td>
-                                        {% endif %}
-                                        {% if gift.facility == 'salvationarmy' %}
-                                            <td>Salvation Army</td>
-                                        {% endif %}
-                                        {% if gift.facility == 'reliefcharity' %}
-                                            <td>Relief Charity</td>
-                                        {% endif %}
-                                        {% if gift.facility == 'foodbank' %}
-                                            <td>Food Bank</td>
-                                        {% endif %}
-                                    {% if gift.user_id == session['id'] %}
-                                        <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <td>Item</td>
+                                <td>QTY</td>
+                                <td>City</td>
+                                <td>Facility</td>
+                                <td>Action</td>
+                            </tr>
+                        </thead>
+                        <tbody class="">
+                            {% for gift in all_gifts %}
+                            <tr>
+                                {% if not gift.purchaser_id %}
+                                <td>{{ gift.item_name }}</td>
+                                <td>{{ gift.quantity }}</td>
+                                    {% if gift.city == 'newyork' %}
+                                        <td>New York, NY</td>
                                     {% endif %}
-                                    {% if (gift.user_id != session['id'] and session['role'] == 'User') %}
-                                        <td><a href="/gift/{{gift.id}}/{{session['id']}}">Gift</a></td>
+                                    {% if gift.city == 'losangeles' %}
+                                        <td>Los Angeles, CA</td>
                                     {% endif %}
+                                    {% if gift.city == 'houston' %}
+                                        <td>Houston, TX</td>
                                     {% endif %}
-                                </tr>
-                                {% endfor %}
-                            </tbody>
-                        </table>
+                                    {% if gift.city == 'maui' %}
+                                        <td>Maui, HI</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'goodwill' %}
+                                        <td>Goodwill</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'salvationarmy' %}
+                                        <td>Salvation Army</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'reliefcharity' %}
+                                        <td>Relief Charity</td>
+                                    {% endif %}
+                                    {% if gift.facility == 'foodbank' %}
+                                        <td>Food Bank</td>
+                                    {% endif %}
+                                {% if gift.user_id == session['id'] %}
+                                    <td><a href="/cancel/{{gift.id}}">Cancel</a></td>
+                                {% endif %}
+                                {% if (gift.user_id != session['id'] and session['role'] == 'User') %}
+                                    <td><a href="/gift/{{gift.id}}/{{session['id']}}">Gift</a></td>
+                                {% endif %}
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            
+                <!-- /home-left-top -->
+
+                <!-- home-left-bottom -->
+                <div class="home-left-bottom">
+                    <div class="links-left-bottom">
+                        {% if session['role'] == 'Admin' %}
+                            <button><a href="/item/custom">Create A Gift Request!</a></button>
+                        {% endif %}
                     </div>
                 </div>
+                <!-- /home-left-bottom -->
             </div>
-            <!-- /home-left-top -->
 
-            <!-- home-left-bottom -->
-            <div class="home-left-bottom">
-                {% if session['role'] == 'Admin' %}
-                    <button><a href="/item/custom">Create A Gift Request!</a></button>
-                {% endif %}
-            </div>
-            <!-- /home-left-bottom -->
-
-        </div>
         <!-- /main left side -->
 
 

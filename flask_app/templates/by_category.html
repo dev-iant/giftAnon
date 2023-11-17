@@ -61,18 +61,19 @@
                             </tr>
                         </thead>
                         <tbody class="">
+
                             {% if category_gifts == False %}
                                 <p>This category has no entries.</p>
-                            {% else %}
-                            {% for category in category_gifts %}
-                            <tr>
-                                {% if not category.purchaser_id %}
-                                <td>{{ category.item_name }}</td>
-                                <td>{{ category.quantity }}</td>
-                                <td><a href="/gift/{{category.id}}/{{session['id']}}">Gift</a></td>
-                                {% endif %}
-                            </tr>
-                            {% endfor %}
+                                    {% else %}
+                                        {% for category in category_gifts %}
+                                            <tr>
+                                                {% if not category.purchaser_id %}
+                                                <td>{{ category.item_name }}</td>
+                                                <td>{{ category.quantity }}</td>
+                                                <td><a href="/gift/{{category.id}}/{{session['id']}}">Gift</a></td>
+                                                {% endif %}
+                                            </tr>
+                                            {% endfor %}
                             {% endif %}
                         </tbody>
                     </table>
